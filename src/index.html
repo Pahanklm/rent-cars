@@ -6,6 +6,33 @@
 
 <body>
 	@@include('html/header.html',{})
+	<main class="main">
+		<div class="container">
+		<section class="top">
+			<h1 class="top__titile"></h1>
+			<h2 class="top__subtitile"></h2>
+			<div class="calendar">
+				<h3 class="calendar__title"></h3>
+				<div class="calendar__box">
+					<form class="calendar__form" action="">
+						<p class="calendar__hint">Дата та час подачі</p>
+						<div class="calendar__inputs">
+							<input class="data1" type="date" value="">
+							<select class="select"></select>
+						</div>
+						<p class="calendar__hint">Дата та час повернення</p>
+						<div class="calendar__inputs">
+							<input class="data2" type="date">
+							<select class="select"></select>
+						</div>
+					</form>
+			</div>
+			</div>
+			<img src="" alt="">
+			<div class="benefits"></div>
+		</section>
+	</div>
+	</main>
 	@@include('html/footer.html',{})
 	<script src="js/app.min.js"></script>
 </body>

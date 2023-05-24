@@ -1,4 +1,39 @@
-@import "global";
-@import "vars";
-@import "reset";
-@import "fonts";
+@import 'global';
+@import 'vars';
+@import 'reset';
+@import 'fonts';
+
+.header {
+    &__nav {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        width: 106px;
+        height: 64px;
+    }
+
+    &__list {
+        display: flex;
+
+        margin-left: 230px;
+        margin-right: 167px;
+        gap: 100px;
+    }
+
+    &__item {
+        :hover {
+            color: #0fa958;
+            transition: all 0.3s;
+        }
+    }
+
+    &__link {
+        color: black;
+    }
+
+    &__phone {
+        color: black;
+    }
+}
