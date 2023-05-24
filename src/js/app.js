@@ -1,4 +1,3 @@
-import { date } from 'gulp-util';
 import * as flsFunctions from './modules/functions.js';
 
 flsFunctions.isWebp();
@@ -55,7 +54,7 @@ const form = document.querySelector('.calendar__form');
 const currentDate = new Date();
 
 // Установка минимальной даты в поле ввода date1Input
-date1Input.min = currentDate.toISOString().slice(0, 10);
+// date1Input.min = currentDate.toISOString().slice(0, 10);
 
 // Установка текущей даты в поле ввода date1Input
 date1Input.value = currentDate.toISOString().slice(0, 10);
@@ -66,7 +65,7 @@ errorMessage.classList.add('error-message');
 form.insertAdjacentElement('afterend', errorMessage);
 
 // ... ваш код ...
-
+// функция проверяет время равно между собой или что-то больше, а что-то меньше
 function compareTime(time1, time2) {
     const [hours1, minutes1] = time1.split(':').map(Number);
     const [hours2, minutes2] = time2.split(':').map(Number);
@@ -85,80 +84,51 @@ function compareTime(time1, time2) {
     }
 }
 
-// ... ваш код ...
-
-date1Input.addEventListener('change', function () {
-    let date1 = new Date(date1Input.value);
-    let today = currentDate.getTime();
-    if (date1.getTime() < today - 9999999999) {
-        errorMessage.textContent =
-            'Дата начала аренды не может быть раньше текущей';
-        date1Input.value = '';
-    } else {
-        errorMessage.textContent = '';
-    }
-});
-
-date2Input.addEventListener('change', function () {
-    let date1 = new Date(date1Input.value);
-    let date2 = new Date(date2Input.value);
-
-    if (date2 < date1) {
-        errorMessage.textContent =
-            'Дата конца аренды не может быть раньше начала';
-        date2Input.value = '';
-    } else {
-        errorMessage.textContent = '';
-    }
-});
-
+//если 2 даты равны между собой то функция проверяет время
 function checkDate(date1, date2) {
     if (date2.getTime() === date1.getTime()) {
         let time1 = selectElements[0].value;
         let time2 = selectElements[1].value;
-
         if (compareTime(time1, time2) < 1) {
             errorMessage.textContent =
                 'Время конца аренды не может быть раньше или в то же время что и начало';
         } else {
             errorMessage.textContent = '';
         }
-    } else {
-        errorMessage.textContent = '';
     }
 }
-
-// Обработка изменений времени начала и конца аренды
-selectElements.forEach(function (selectElement) {
-    selectElement.addEventListener('change', function () {
-        let date1 = new Date(date1Input.value);
-        let date2 = new Date(date2Input.value);
-        console.log(date2.getTime);
-        console.log(date1.getTime);
-        checkDate(date1, date2);
-    });
-});
 
 const inputs = [date1Input, date2Input];
 inputs.forEach(function (input) {
     input.addEventListener('change', function () {
         let date1 = new Date(date1Input.value);
         let date2 = new Date(date2Input.value);
-        console.log(date1.getTime());
-        console.log(date2.getTime());
-
-        if (date1.getTime() === date2.getTime()) {
-            let time1 = selectElements[0].value;
-            let time2 = selectElements[1].value;
-
-            if (compareTime(time1, time2) < 1) {
-                errorMessage.textContent =
-                    'Время конца аренды не может быть раньше или в то же время, что и начало';
-            } else {
-                errorMessage.textContent = '';
-            }
+        let getDay = date1.getTime();
+        let today = currentDate.getTime();
+        console.log(today);
+        console.log(getDay);
+        if (getDay < today - 99999999) {
+            errorMessage.textContent =
+                'дата подачи не может быть раньше чем сегодня';
+            date1Input.value = '';
         } else {
-            checkDate(date1, date2);
+            errorMessage.textContent = '';
         }
+
+        checkDate(date1, date2);
+        if (date1 > date2) {
+            errorMessage.textContent =
+                'дата подачи не может быть позже чем дата возврата';
+            date2Input.value = '';
+        }
+    });
+});
+
+// Обработка изменений времени начала и конца аренды
+selectElements.forEach(function (selectElement) {
+    selectElement.addEventListener('change', function () {
+        let date1 = new Date(date1Input.value);
+        let date2 = new Date(date2Input.value);
+        checkDate(date1, date2);
     });
 });
