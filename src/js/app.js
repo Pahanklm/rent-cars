@@ -4,8 +4,6 @@ flsFunctions.isWebp();
 import AirDatepicker from 'air-datepicker';
 
 const selectElements = document.querySelectorAll('select');
-const date1Input = document.querySelector('.calendar__input--date1');
-const date2Input = document.querySelector('.calendar__input--date2');
 const form = document.querySelector('.calendar__form');
 const currentDate = new Date();
 const errorMessage = document.createElement('span');
@@ -45,27 +43,59 @@ function compareTime(time1, time2) {
     return 0;
 }
 
-selectElements.forEach((selectElement) => {
-    selectElement.innerHTML = '';
+function createOptionElement(text) {
+    const optionElement = document.createElement('option');
+    optionElement.textContent = text;
+    return optionElement;
+}
 
-    for (
-        let currentTime = new Date(startTime);
-        currentTime <= endTime;
-        currentTime.setMinutes(currentTime.getMinutes() + timeStep)
-    ) {
-        const hours = currentTime.getHours();
-        const minutes = currentTime.getMinutes();
-        const timeString = `${('0' + hours).slice(-2)}:${('0' + minutes).slice(
-            -2
-        )}`;
+function updateSelectElements() {
+    selectElements.forEach((selectElement) => {
+        selectElement.innerHTML = '';
 
-        const optionElement = document.createElement('option');
-        optionElement.textContent = timeString;
-        selectElement.appendChild(optionElement);
+        for (
+            let currentTime = new Date(startTime);
+            currentTime <= endTime;
+            currentTime.setMinutes(currentTime.getMinutes() + timeStep)
+        ) {
+            const hours = currentTime.getHours();
+            const minutes = currentTime.getMinutes();
+            const timeString = `${('0' + hours).slice(-2)}:${(
+                '0' + minutes
+            ).slice(-2)}`;
+
+            const optionElement = createOptionElement(timeString);
+            selectElement.appendChild(optionElement);
+        }
+    });
+}
+
+function updateErrorMessage(date1, date2, time1, time2) {
+    if (date1 > date2 && date1 !== '' && date2 !== '') {
+        errorMessage.textContent = 'lfksdjkfd';
+    } else {
+        errorMessage.textContent = '';
     }
-});
+
+    if (date1 === date2) {
+        if (date1 === '' || date2 === '') {
+            errorMessage.textContent = '';
+        }
+        if (compareTime(time1, time2) < 1) {
+            errorMessage.textContent =
+                'Время конца аренды не может быть раньше или в то же время что и начало';
+        } else {
+            errorMessage.textContent = '';
+        }
+        if (date1 !== date2) {
+            errorMessage.textContent = '';
+        }
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
+    updateSelectElements();
+
     new AirDatepicker('#airdatepicker1', {
         minDate: currentDate,
         container: 'calendar',
@@ -75,27 +105,10 @@ document.addEventListener('DOMContentLoaded', function () {
         onSelect({ date, formattedDate, datepicker }) {
             let date1 = airdatepicker1.value;
             let date2 = airdatepicker2.value;
-            if (date1 > date2 && date1 !== '' && date2 !== '') {
-                errorMessage.textContent = 'lfksdjkfd';
-            } else {
-                errorMessage.textContent = '';
-            }
             let time1 = selectElements[0].value;
             let time2 = selectElements[1].value;
-            if (date1 === date2) {
-                if (date1 === '' || date2 === '') {
-                    errorMessage.textContent = '';
-                }
-                if (compareTime(time1, time2) < 1) {
-                    errorMessage.textContent =
-                        'Время конца аренды не может быть раньше или в то же время что и начало';
-                } else {
-                    errorMessage.textContent = '';
-                }
-                if (date1 !== date2) {
-                    errorMessage.textContent = '';
-                }
-            }
+
+            updateErrorMessage(date1, date2, time1, time2);
         },
         locale: {
             days: [
@@ -144,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
             firstDay: 1,
         },
     });
+
     new AirDatepicker('#airdatepicker2', {
         minDate: currentDate,
         disableNavWhenOutOfRange: true,
@@ -152,27 +166,10 @@ document.addEventListener('DOMContentLoaded', function () {
         onSelect({ date, formattedDate, datepicker }) {
             let date1 = airdatepicker1.value;
             let date2 = airdatepicker2.value;
-            if (date1 > date2 && date1 !== '' && date2 !== '') {
-                errorMessage.textContent = 'lfksdjkfd';
-            } else {
-                errorMessage.textContent = '';
-            }
             let time1 = selectElements[0].value;
             let time2 = selectElements[1].value;
-            if (date1 === date2) {
-                if (date1 === '' || date2 === '') {
-                    errorMessage.textContent = '';
-                }
-                if (compareTime(time1, time2) < 1) {
-                    errorMessage.textContent =
-                        'Время конца аренды не может быть раньше или в то же время что и начало';
-                } else {
-                    errorMessage.textContent = '';
-                }
-                if (date1 !== date2) {
-                    errorMessage.textContent = '';
-                }
-            }
+
+            updateErrorMessage(date1, date2, time1, time2);
         },
         locale: {
             days: [
@@ -229,13 +226,7 @@ selectElements.forEach(function (selectElement) {
         let date2 = airdatepicker2.value;
         let time1 = selectElements[0].value;
         let time2 = selectElements[1].value;
-        if (date1 === date2) {
-            if (compareTime(time1, time2) < 1) {
-                errorMessage.textContent =
-                    'Время конца аренды не может быть раньше или в то же время что и начало';
-            } else {
-                errorMessage.textContent = '';
-            }
-        }
+
+        updateErrorMessage(date1, date2, time1, time2);
     });
 });
