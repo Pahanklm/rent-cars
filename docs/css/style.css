@@ -162,6 +162,16 @@ a {
   display: flex;
 }
 
+.calendar__input {
+  background: rgba(15, 169, 88, 0.1);
+  border-radius: 10px;
+  color: #0fa958;
+}
+
+.calendar__input::before {
+  content: url(/docs/img/calendar.svg);
+}
+
 .calendar__inputs {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -200,4 +210,45 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.air-datepicker-cell.-disabled-:hover {
+  color: default;
+  background-color: white;
+}
+
+.-day-:hover {
+  background: #0fa958;
+  border-radius: 100px;
+  color: #fcfcfc;
+}
+
+.air-datepicker-nav--action:hover {
+  background-color: green;
+}
+
+.air-datepicker-body--day-name {
+  color: black;
+}
+
+.air-datepicker-cell.-current- {
+  color: red;
+}
+
+.air-datepicker-cell.-selected- {
+  color: black;
+  background-color: #0fa958;
+}
+
+.air-datepicker-cell.-selected-:hover {
+  color: black;
+  background-color: #0fa958;
+}
+
+.air-datepicker-cell.-disabled- {
+  color: rgba(15, 169, 88, 0.3);
+}
+
+.air-datepicker-cell.-day-.-other-month- {
+  color: rgba(15, 169, 88, 0.3);
 }

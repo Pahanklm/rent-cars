@@ -4,6 +4,7 @@ flsFunctions.isWebp();
 import AirDatepicker from 'air-datepicker';
 
 const selectElements = document.querySelectorAll('select');
+
 const form = document.querySelector('.calendar__form');
 const currentDate = new Date();
 const errorMessage = document.createElement('span');
