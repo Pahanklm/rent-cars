@@ -1,6 +1,11 @@
+@import '../../node_modules/air-datepicker/air-datepicker.css';
+
 html,
 body {
   height: 100%;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
 }
 
 .wrapper {
@@ -124,4 +129,75 @@ a {
 
 .header__phone {
   color: black;
+}
+
+.top__title {
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 65px;
+  color: #0fa958;
+}
+
+.top__subtitle {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 44px;
+}
+
+.top__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.calendar__title {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+.calendar__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.calendar__inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.calendar__input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 202px;
+  height: 60px;
+  background: rgba(15, 169, 88, 0.1);
+  border-radius: 10px;
+  color: #0fa958;
+}
+
+.calendar__input::before {
+  content: url("../img/calendar.svg");
+}
+
+.calendar__btn {
+  width: 386px;
+  height: 57px;
+  background: #0fa958;
+  border: none;
+  border-radius: 10px;
+  color: #fcfcfc;
+}
+
+.container__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }

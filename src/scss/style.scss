@@ -2,6 +2,7 @@
 @import 'vars';
 @import 'reset';
 @import 'fonts';
+@import '../../node_modules/air-datepicker/air-datepicker.css';
 
 .header {
     &__nav {
@@ -35,5 +36,104 @@
 
     &__phone {
         color: black;
+    }
+}
+
+.top {
+    &__text {
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 48px;
+        line-height: 65px;
+
+        color: #0fa958;
+    }
+
+    &__subtitle {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 44px;
+    }
+
+    &__box {
+        display: flex;
+    }
+
+    &__car {
+    }
+}
+.calendar {
+    &__title {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 27px;
+    }
+
+    &__box {
+        display: flex;
+    }
+
+    &__form {
+    }
+
+    &__hint {
+    }
+
+    &__inputs {
+        display: flex;
+    }
+
+    &__input {
+        display: flex;
+        width: 202px;
+        height: 60px;
+
+        background: rgba(15, 169, 88, 0.1);
+        border-radius: 10px;
+        color: #0fa958;
+
+        &::before {
+            content: url('../img/calendar.svg');
+        }
+    }
+
+    &__input--date1 {
+    }
+
+    &__select {
+    }
+
+    &__select--time {
+    }
+
+    &__input--date2 {
+    }
+
+    &__btn {
+        width: 386px;
+        height: 57px;
+
+        background: #0fa958;
+        border: none;
+        border-radius: 10px;
+        color: #fcfcfc;
+    }
+}
+.container {
+    &__box {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.benefits {
+    &__list {
+    }
+
+    &__item {
+    }
+
+    &__text {
     }
 }

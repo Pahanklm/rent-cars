@@ -32,6 +32,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-svg-sprite": "latest",
     "gulp-ttf2woff2": "latest",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-util": "latest",
     "gulp-version-number": "latest",
     "gulp-webp": "latest",
@@ -39,13 +40,10 @@
     "gulp-webpcss": "latest",
     "gulp-zip": "latest",
     "sass": "^1.57.1",
+    "typescript": "^5.0.4",
     "vinyl-ftp": "latest",
     "webp-converter": "2.2.3",
     "webpack": "latest",
     "webpack-stream": "latest"
-  },
-  "dependencies": {
-    "inline-import": "latest",
-    "swiper": "latest"
   }
 }

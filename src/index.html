@@ -1,40 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-@@include('html/head.html',{
-"title":"главная"
-})
+    @@include('html/head.html',{ "title":"главная" })
 
-<body>
-	@@include('html/header.html',{})
-	<main class="main">
-		<div class="container">
-		<section class="top">
-			<h1 class="top__titile"></h1>
-			<h2 class="top__subtitile"></h2>
-			<div class="calendar">
-				<h3 class="calendar__title"></h3>
-				<div class="calendar__box">
-					<form class="calendar__form" action="">
-						<p class="calendar__hint">Дата та час подачі</p>
-						<div class="calendar__inputs">
-							<input class="data1" type="date" value="">
-							<select class="select"></select>
-						</div>
-						<p class="calendar__hint">Дата та час повернення</p>
-						<div class="calendar__inputs">
-							<input class="data2" type="date">
-							<select class="select"></select>
-						</div>
-					</form>
-			</div>
-			</div>
-			<img src="" alt="">
-			<div class="benefits"></div>
-		</section>
-	</div>
-	</main>
-	@@include('html/footer.html',{})
-	<script src="js/app.min.js"></script>
-</body>
-
+    <body>
+        @@include('html/header.html',{})
+        <main class="main">
+            <div class="container">
+                <section class="top">
+                    <div class="top__text">
+                        <h1 class="top__title">
+                            Оренда електромобілів у Києві
+                        </h1>
+                        <h2 class="top__subtitle">
+                            Пересування без меж за доступною ціною
+                        </h2>
+                    </div>
+                    <div class="top__box">
+                        <div class="calendar">
+                            <h3 class="calendar__title">
+                                Готові запропонувати вам найкращий варіант
+                                автомобіля
+                            </h3>
+                            <div class="calendar__box">
+                                <form class="calendar__form" action="">
+                                    <label class="calendar__hint">
+                                        Дата та час подачі
+                                    </label>
+                                    <div class="calendar__inputs">
+                                        <input
+                                            class="calendar__input--date1"
+                                            type="text"
+                                            id="airdatepicker1"
+                                            autocomplete="off"
+                                        />
+                                        <select
+                                            class="calendar__select calendar__select--time"
+                                        ></select>
+                                    </div>
+                                    <label class="calendar__hint">
+                                        Дата та час повернення
+                                    </label>
+                                    <div class="calendar__inputs">
+                                        <input
+                                            class="calendar__input--date2"
+                                            type="text"
+                                            id="airdatepicker2"
+                                            autocomplete="off"
+                                        />
+                                        <select
+                                            class="calendar__select calendar__select--time"
+                                        ></select>
+                                    </div>
+                                    <button class="calendar__btn">
+                                        Надіслати
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="container__box">
+                            <img
+                                class="top__car"
+                                src="@img/header/car.png"
+                                alt="car"
+                            />
+                            <div class="benefits">
+                                <ul class="benefits__list">
+                                    <li class="benefits__item">
+                                        <p class="benefits__text">
+                                            Екологічність
+                                        </p>
+                                    </li>
+                                    <li class="benefits__item">
+                                        <p class="benefits__text">Надійність</p>
+                                    </li>
+                                    <li class="benefits__item">
+                                        <p class="benefits__text">
+                                            Нові технології
+                                        </p>
+                                    </li>
+                                    <li class="benefits__item">
+                                        <p class="benefits__text">Економія</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        @@include('html/footer.html',{})
+        <script src="js/app.min.js"></script>
+    </body>
 </html>
