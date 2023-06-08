@@ -168,29 +168,71 @@ a {
   color: #0fa958;
 }
 
-.calendar__input::before {
-  content: url(/docs/img/calendar.svg);
-}
-
 .calendar__inputs {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.calendar__inputs::before {
+  content: url("../img/calendar.svg");
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 .calendar__input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  text-align: center;
   width: 202px;
   height: 60px;
+  cursor: pointer;
+  border: none;
   background: rgba(15, 169, 88, 0.1);
   border-radius: 10px;
   color: #0fa958;
 }
 
-.calendar__input::before {
-  content: url("../img/calendar.svg");
+.calendar__select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  width: 172px;
+  height: 60px;
+  background: rgba(15, 169, 88, 0.1);
+  border-radius: 10px;
+  border: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+}
+
+.calendar__select option {
+  background: #fcfcfc;
+  -webkit-box-shadow: 20px 20px 30px rgba(15, 169, 88, 0.1), inset 0px 4px 23px rgba(15, 169, 88, 0.1);
+          box-shadow: 20px 20px 30px rgba(15, 169, 88, 0.1), inset 0px 4px 23px rgba(15, 169, 88, 0.1);
+  border-radius: 100px;
+}
+
+.calendar__watch::before {
+  content: url("../img/watch.svg");
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.calendar__watch::after {
+  content: url("../img/drop-down.svg");
+  position: absolute;
+  right: 10px;
+  top: 18px;
 }
 
 .calendar__btn {
@@ -212,6 +254,14 @@ a {
           flex-direction: column;
 }
 
+.air-datepicker {
+  background: #fcfcfc;
+  -webkit-box-shadow: 20px 20px 30px rgba(15, 169, 88, 0.1), inset 0px 4px 23px rgba(15, 169, 88, 0.1);
+          box-shadow: 20px 20px 30px rgba(15, 169, 88, 0.1), inset 0px 4px 23px rgba(15, 169, 88, 0.1);
+  border-radius: 10px;
+  border: none;
+}
+
 .air-datepicker-cell.-disabled-:hover {
   color: default;
   background-color: white;
@@ -227,22 +277,36 @@ a {
   background-color: green;
 }
 
+.air-datepicker-nav {
+  border-bottom: 1px solid rgba(15, 169, 88, 0.3);
+}
+
 .air-datepicker-body--day-name {
   color: black;
 }
 
 .air-datepicker-cell.-current- {
-  color: red;
+  color: #0fa958;
+  font-size: large;
+}
+
+.air-datepicker-cell.-current-:hover {
+  color: white;
+  background: rgba(15, 169, 88, 0.3);
 }
 
 .air-datepicker-cell.-selected- {
   color: black;
   background-color: #0fa958;
+  border-radius: 100px;
+  color: #fcfcfc;
 }
 
 .air-datepicker-cell.-selected-:hover {
   color: black;
   background-color: #0fa958;
+  color: #fcfcfc;
+  background: rgba(15, 169, 88, 0.3);
 }
 
 .air-datepicker-cell.-disabled- {
@@ -251,4 +315,30 @@ a {
 
 .air-datepicker-cell.-day-.-other-month- {
   color: rgba(15, 169, 88, 0.3);
+}
+
+.air-datepicker-cell.-selected-.-current- {
+  background: #0fa958;
+  border-radius: 100px;
+  color: #fcfcfc;
+}
+
+.air-datepicker-cell.-focus- {
+  background: rgba(15, 169, 88, 0.3);
+  color: #0fa958;
+}
+
+.air-datepicker-nav--title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.air-datepicker-button {
+  color: #0fa958;
+}
+
+.air-datepicker-button:hover {
+  background: rgba(15, 169, 88, 0.3);
+  color: #fcfcfc;
 }

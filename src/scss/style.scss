@@ -85,32 +85,73 @@
         border-radius: 10px;
 
         color: #0fa958;
-        &::before {
-            content: url(/docs/img/calendar.svg);
-        }
     }
     &__inputs {
         display: flex;
+        gap: 10px;
+
+        position: relative;
+
+        cursor: pointer;
+
+        &::before {
+            content: url('../img/calendar.svg');
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
     }
 
     &__input {
         display: flex;
+        text-align: center;
+
         width: 202px;
         height: 60px;
+        cursor: pointer;
+        border: none;
 
         background: rgba(15, 169, 88, 0.1);
         border-radius: 10px;
         color: #0fa958;
-
-        &::before {
-            content: url('../img/calendar.svg');
-        }
     }
 
     &__input--date1 {
     }
 
     &__select {
+        display: flex;
+        text-align: center;
+
+        width: 172px;
+        height: 60px;
+
+        background: rgba(15, 169, 88, 0.1);
+        border-radius: 10px;
+        border: none;
+
+        appearance: none;
+        cursor: pointer;
+    }
+    &__select option {
+        background: #fcfcfc;
+        box-shadow: 20px 20px 30px rgba(15, 169, 88, 0.1),
+            inset 0px 4px 23px rgba(15, 169, 88, 0.1);
+        border-radius: 100px;
+    }
+    &__watch {
+        &::before {
+            content: url('../img/watch.svg');
+            position: absolute;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        &::after {
+            content: url('../img/drop-down.svg');
+            position: absolute;
+            right: 10px;
+            top: 18px;
+        }
     }
 
     &__select--time {
@@ -147,6 +188,14 @@
 }
 
 // calendar
+
+.air-datepicker {
+    background: #fcfcfc;
+    box-shadow: 20px 20px 30px rgba(15, 169, 88, 0.1),
+        inset 0px 4px 23px rgba(15, 169, 88, 0.1);
+    border-radius: 10px;
+    border: none;
+}
 .air-datepicker-cell.-disabled-:hover {
     color: default;
     background-color: white;
@@ -160,23 +209,56 @@
 .air-datepicker-nav--action:hover {
     background-color: green;
 }
+.air-datepicker-nav {
+    border-bottom: 1px solid rgba(15, 169, 88, 0.3);
+}
 .air-datepicker-body--day-name {
     color: black;
 }
 .air-datepicker-cell.-current- {
-    color: red;
+    color: #0fa958;
+    font-size: large;
+}
+.air-datepicker-cell.-current-:hover {
+    color: white;
+    background: rgba(15, 169, 88, 0.3);
 }
 .air-datepicker-cell.-selected- {
     color: black;
     background-color: #0fa958;
+    border-radius: 100px;
+    color: #fcfcfc;
 }
 .air-datepicker-cell.-selected-:hover {
     color: black;
     background-color: #0fa958;
+    color: #fcfcfc;
+    background: rgba(15, 169, 88, 0.3);
 }
 .air-datepicker-cell.-disabled- {
     color: rgba(15, 169, 88, 0.3);
 }
 .air-datepicker-cell.-day-.-other-month- {
     color: rgba(15, 169, 88, 0.3);
+}
+.air-datepicker-cell.-selected-.-current- {
+    background: #0fa958;
+    border-radius: 100px;
+    color: #fcfcfc;
+}
+.air-datepicker-cell.-focus- {
+    background: rgba(15, 169, 88, 0.3);
+    color: #0fa958;
+}
+.air-datepicker-nav--title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+}
+.air-datepicker-button {
+    color: #0fa958;
+}
+.air-datepicker-button:hover {
+    background: rgba(15, 169, 88, 0.3);
+    color: #fcfcfc;
 }

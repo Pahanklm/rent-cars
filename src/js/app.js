@@ -74,23 +74,15 @@ function updateSelectElements() {
 function updateErrorMessage(date1, date2, time1, time2) {
     if (date1 > date2 && date1 !== '' && date2 !== '') {
         errorMessage.textContent = 'lfksdjkfd';
-    } else {
-        errorMessage.textContent = '';
-    }
-
-    if (date1 === date2) {
-        if (date1 === '' || date2 === '') {
-            errorMessage.textContent = '';
-        }
+    } else if (date1 === date2 && date1 !== '' && date2 !== '') {
         if (compareTime(time1, time2) < 1) {
             errorMessage.textContent =
                 'Время конца аренды не может быть раньше или в то же время что и начало';
         } else {
             errorMessage.textContent = '';
         }
-        if (date1 !== date2) {
-            errorMessage.textContent = '';
-        }
+    } else {
+        errorMessage.textContent = '';
     }
 }
 
