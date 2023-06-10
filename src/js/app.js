@@ -2,23 +2,21 @@ import * as flsFunctions from './modules/functions.js';
 flsFunctions.isWebp();
 
 import AirDatepicker from 'air-datepicker';
-
-const selectElements = document.querySelectorAll('select');
+import choices from 'choices.js';
 
 const form = document.querySelector('.calendar__form');
+const selectElement1 = document.querySelector('.calendar__select1');
+const selectElement2 = document.querySelector('.calendar__select2');
+const calendarBtn = document.querySelector('.calendar__btn');
+const selectElements = [selectElement1, selectElement2];
 const currentDate = new Date();
+const day = currentDate.getDate();
+const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+const year = currentDate.getFullYear();
+
 const errorMessage = document.createElement('span');
 errorMessage.classList.add('error-message');
 form.insertAdjacentElement('afterend', errorMessage);
-const startTime = new Date();
-startTime.setHours(9);
-startTime.setMinutes(0);
-
-const endTime = new Date();
-endTime.setHours(23);
-endTime.setMinutes(59);
-
-const timeStep = 30;
 
 let button = {
     content: 'Сьогодні',
@@ -44,31 +42,53 @@ function compareTime(time1, time2) {
     return 0;
 }
 
-function createOptionElement(text) {
-    const optionElement = document.createElement('option');
-    optionElement.textContent = text;
-    return optionElement;
-}
+selectElements.forEach(function (selectElement) {
+    selectElement.addEventListener('change', function () {
+        let date1 = airdatepicker1.value;
+        let date2 = airdatepicker2.value;
+        let time1 = selectElement1.textContent;
+        let time2 = selectElement2.textContent;
 
-function updateSelectElements() {
-    selectElements.forEach((selectElement) => {
-        selectElement.innerHTML = '';
-
-        for (
-            let currentTime = new Date(startTime);
-            currentTime <= endTime;
-            currentTime.setMinutes(currentTime.getMinutes() + timeStep)
-        ) {
-            const hours = currentTime.getHours();
-            const minutes = currentTime.getMinutes();
-            const timeString = `${('0' + hours).slice(-2)}:${(
-                '0' + minutes
-            ).slice(-2)}`;
-
-            const optionElement = createOptionElement(timeString);
-            selectElement.appendChild(optionElement);
-        }
+        updateErrorMessage(date1, date2, time1, time2);
     });
+});
+
+// Функция для автодобавления опций
+
+function addTimeOptions() {
+    let date1 = airdatepicker1.value;
+    const currentTime = new Date();
+    let startTime;
+    const today = `${day}.${month}.${year}`;
+
+    if (date1 === today) {
+        startTime = new Date(
+            Math.ceil(currentTime.getTime() / (30 * 60 * 1000)) *
+                (30 * 60 * 1000)
+        );
+    }
+    if (date1 !== today) {
+        startTime = new Date();
+        startTime.setHours(9, 0, 0, 0); // Установка начального времени, в данном случае 9:00
+    }
+    const endTime = new Date(currentTime); // Конечное время
+    endTime.setHours(23, 59, 0); // Установка конечного времени, в данном случае 18:00
+
+    const timeOptions = [];
+
+    // Цикл для добавления опций с интервалом в полчаса
+    while (startTime <= endTime) {
+        const optionText = startTime.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+        const optionValue = startTime.toISOString();
+
+        timeOptions.push({ label: optionText, value: optionValue });
+
+        startTime.setTime(startTime.getTime() + 30 * 60 * 1000); // Добавление 30 минут
+    }
+    return timeOptions;
 }
 
 function updateErrorMessage(date1, date2, time1, time2) {
@@ -85,9 +105,8 @@ function updateErrorMessage(date1, date2, time1, time2) {
         errorMessage.textContent = '';
     }
 }
-
 document.addEventListener('DOMContentLoaded', function () {
-    updateSelectElements();
+    // updateSelectElements();
 
     new AirDatepicker('#airdatepicker1', {
         minDate: currentDate,
@@ -98,10 +117,33 @@ document.addEventListener('DOMContentLoaded', function () {
         onSelect({ date, formattedDate, datepicker }) {
             let date1 = airdatepicker1.value;
             let date2 = airdatepicker2.value;
-            let time1 = selectElements[0].value;
-            let time2 = selectElements[1].value;
+            let time1 = selectElement1.textContent;
+            let time2 = selectElement2.textContent;
 
             updateErrorMessage(date1, date2, time1, time2);
+            // Очистка выбранных опций в select1
+            if (selectElement1.choices) {
+                selectElement1.choices.destroy();
+            }
+            if (selectElement2.choices) {
+                selectElement2.choices.destroy();
+            }
+
+            // Инициализация выборов для selectElement1
+            selectElement1.choices = new choices(selectElement1, {
+                searchEnabled: false,
+                shouldSort: false,
+                choices: addTimeOptions(),
+                allowHTML: true,
+            });
+
+            // Инициализация выборов для selectElement2
+            selectElement2.choices = new choices(selectElement2, {
+                searchEnabled: false,
+                shouldSort: false,
+                choices: addTimeOptions(),
+                allowHTML: true,
+            });
         },
         locale: {
             days: [
@@ -159,8 +201,8 @@ document.addEventListener('DOMContentLoaded', function () {
         onSelect({ date, formattedDate, datepicker }) {
             let date1 = airdatepicker1.value;
             let date2 = airdatepicker2.value;
-            let time1 = selectElements[0].value;
-            let time2 = selectElements[1].value;
+            let time1 = selectElement1.textContent;
+            let time2 = selectElement2.textContent;
 
             updateErrorMessage(date1, date2, time1, time2);
         },
@@ -213,13 +255,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-selectElements.forEach(function (selectElement) {
-    selectElement.addEventListener('change', function () {
-        let date1 = airdatepicker1.value;
-        let date2 = airdatepicker2.value;
-        let time1 = selectElements[0].value;
-        let time2 = selectElements[1].value;
-
-        updateErrorMessage(date1, date2, time1, time2);
-    });
-});
+if (errorMessage.textContent !== '') {
+    calendarBtn.disabled = true;
+} else {
+    calendarBtn.disabled = false;
+}

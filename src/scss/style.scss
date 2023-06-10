@@ -3,6 +3,7 @@
 @import 'reset';
 @import 'fonts';
 @import '../../node_modules/air-datepicker/air-datepicker.css';
+@import '../../node_modules/choices.js/src/styles/choices.scss';
 
 .header {
     &__nav {
@@ -99,6 +100,7 @@
             position: absolute;
             top: 10px;
             left: 10px;
+            pointer-events: none;
         }
     }
 
@@ -117,41 +119,6 @@
     }
 
     &__input--date1 {
-    }
-
-    &__select {
-        display: flex;
-        text-align: center;
-
-        width: 172px;
-        height: 60px;
-
-        background: rgba(15, 169, 88, 0.1);
-        border-radius: 10px;
-        border: none;
-
-        appearance: none;
-        cursor: pointer;
-    }
-    &__select option {
-        background: #fcfcfc;
-        box-shadow: 20px 20px 30px rgba(15, 169, 88, 0.1),
-            inset 0px 4px 23px rgba(15, 169, 88, 0.1);
-        border-radius: 100px;
-    }
-    &__watch {
-        &::before {
-            content: url('../img/watch.svg');
-            position: absolute;
-            margin-top: 10px;
-            margin-left: 10px;
-        }
-        &::after {
-            content: url('../img/drop-down.svg');
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
     }
 
     &__select--time {
@@ -261,4 +228,14 @@
 .air-datepicker-button:hover {
     background: rgba(15, 169, 88, 0.3);
     color: #fcfcfc;
+}
+
+// time
+.choices {
+    width: 500px;
+}
+.choices__list--dropdown,
+.choices__list[aria-expanded] {
+    color: red;
+    background-color: blue;
 }
