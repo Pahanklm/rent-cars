@@ -24,3 +24,6 @@ body {
     margin: 0 auto;
     padding: 30px 0;
 }
+button:disabled {
+    background-color: grey;
+}

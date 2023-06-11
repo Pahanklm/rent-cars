@@ -117,13 +117,21 @@
         border-radius: 10px;
         color: #0fa958;
     }
-
-    &__input--date1 {
+    &__watch {
+        &::after {
+            content: url('../img/drop-down.svg');
+            position: absolute;
+            right: 10px;
+            top: 18px;
+            pointer-events: none;
+        }
+        &::before {
+            content: url('../img/watch.svg');
+            position: absolute;
+            top: 10px;
+            left: 219px;
+        }
     }
-
-    &__select--time {
-    }
-
     &__input--date2 {
     }
 
@@ -230,12 +238,66 @@
     color: #fcfcfc;
 }
 
-// time
-.choices {
-    width: 500px;
+.choices__inner {
+    width: 172px;
+    height: 60px;
+    padding: 0;
+    background: rgba(15, 169, 88, 0.1);
+    border-radius: 10px;
+    color: #0fa958;
+}
+.choices__list--single {
+    padding: 0;
+}
+.choices[data-type*='select-one']::after {
+    border-style: none;
+}
+.choices__list {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    padding-right: 6px;
 }
 .choices__list--dropdown,
 .choices__list[aria-expanded] {
-    color: red;
-    background-color: blue;
+    color: black;
+    background-color: white;
+    width: 173px;
+    box-shadow: 20px 20px 30px rgba(15, 169, 88, 0.1),
+        inset 0px 4px 23px rgba(15, 169, 88, 0.1);
+    border-radius: 10px;
+}
+.choices__list--dropdown .choices__item--selectable.is-highlighted,
+.choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
+    background-color: #0fa958;
+    color: white;
+    border-radius: 10px;
+}
+.choices__list--dropdown .choices__item,
+.choices__list[aria-expanded] .choices__item {
+    display: block;
+    width: 101px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    height: 30px;
+    padding: 0 !important;
+    margin-left: 36px;
+}
+
+/* Стили скроллбара */
+.choices__list--dropdown .choices__list::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Стили полосы скроллбара */
+.choices__list--dropdown .choices__list::-webkit-scrollbar-thumb {
+    overflow: hidden;
+}
+
+.choices__list--dropdown .choices__list:hover::-webkit-scrollbar-thumb {
+    background-color: #0fa958;
 }

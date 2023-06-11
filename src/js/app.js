@@ -50,10 +50,9 @@ selectElements.forEach(function (selectElement) {
         let time2 = selectElement2.textContent;
 
         updateErrorMessage(date1, date2, time1, time2);
+        updateCalendarButton(); // Check and update the calendar button state
     });
 });
-
-// Функция для автодобавления опций
 
 function addTimeOptions() {
     let date1 = airdatepicker1.value;
@@ -69,14 +68,13 @@ function addTimeOptions() {
     }
     if (date1 !== today) {
         startTime = new Date();
-        startTime.setHours(9, 0, 0, 0); // Установка начального времени, в данном случае 9:00
+        startTime.setHours(9, 0, 0, 0); // Set the initial time, in this case, 9:00
     }
-    const endTime = new Date(currentTime); // Конечное время
-    endTime.setHours(23, 59, 0); // Установка конечного времени, в данном случае 18:00
+    const endTime = new Date(currentTime); // End time
+    endTime.setHours(23, 59, 0); // Set the end time, in this case, 18:00
 
     const timeOptions = [];
 
-    // Цикл для добавления опций с интервалом в полчаса
     while (startTime <= endTime) {
         const optionText = startTime.toLocaleTimeString([], {
             hour: '2-digit',
@@ -86,7 +84,7 @@ function addTimeOptions() {
 
         timeOptions.push({ label: optionText, value: optionValue });
 
-        startTime.setTime(startTime.getTime() + 30 * 60 * 1000); // Добавление 30 минут
+        startTime.setTime(startTime.getTime() + 30 * 60 * 1000);
     }
     return timeOptions;
 }
@@ -105,10 +103,34 @@ function updateErrorMessage(date1, date2, time1, time2) {
         errorMessage.textContent = '';
     }
 }
-document.addEventListener('DOMContentLoaded', function () {
-    // updateSelectElements();
 
+function updateCalendarButton() {
+    if (errorMessage.textContent !== '') {
+        calendarBtn.disabled = true;
+    } else {
+        calendarBtn.disabled = false;
+    }
+}
+selectElement1.choices = new choices(selectElement1, {
+    searchEnabled: false,
+    shouldSort: false,
+    itemSelectText: '',
+    choices: addTimeOptions(),
+    allowHTML: true,
+});
+
+selectElement2.choices = new choices(selectElement2, {
+    searchEnabled: false,
+    shouldSort: false,
+    itemSelectText: '',
+    choices: addTimeOptions(),
+    allowHTML: true,
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log(currentDate);
     new AirDatepicker('#airdatepicker1', {
+        startDate: currentDate,
         minDate: currentDate,
         container: 'calendar',
         disableNavWhenOutOfRange: true,
@@ -121,7 +143,8 @@ document.addEventListener('DOMContentLoaded', function () {
             let time2 = selectElement2.textContent;
 
             updateErrorMessage(date1, date2, time1, time2);
-            // Очистка выбранных опций в select1
+            updateCalendarButton(); // Check and update the calendar button state
+
             if (selectElement1.choices) {
                 selectElement1.choices.destroy();
             }
@@ -129,72 +152,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 selectElement2.choices.destroy();
             }
 
-            // Инициализация выборов для selectElement1
             selectElement1.choices = new choices(selectElement1, {
                 searchEnabled: false,
                 shouldSort: false,
+                itemSelectText: '',
                 choices: addTimeOptions(),
                 allowHTML: true,
             });
 
-            // Инициализация выборов для selectElement2
             selectElement2.choices = new choices(selectElement2, {
                 searchEnabled: false,
                 shouldSort: false,
+                itemSelectText: '',
                 choices: addTimeOptions(),
                 allowHTML: true,
             });
         },
         locale: {
-            days: [
-                'Неділя',
-                'Понеділок',
-                'Вівторок',
-                'Середа',
-                'Четвер',
-                'П’ятниця',
-                'Субота',
-            ],
-            daysShort: ['Нед', 'Пнд', 'Вів', 'Срд', 'Чтв', 'Птн', 'Сбт'],
-            daysMin: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-            months: [
-                'Січень',
-                'Лютий',
-                'Березень',
-                'Квітень',
-                'Травень',
-                'Червень',
-                'Липень',
-                'Серпень',
-                'Вересень',
-                'Жовтень',
-                'Листопад',
-                'Грудень',
-            ],
-            monthsShort: [
-                'Січ',
-                'Лют',
-                'Бер',
-                'Кві',
-                'Тра',
-                'Чер',
-                'Лип',
-                'Сер',
-                'Вер',
-                'Жов',
-                'Лис',
-                'Гру',
-            ],
-            today: 'Сьогодні',
-            clear: 'Очистити',
-            dateFormat: 'dd.MM.yyyy',
-            timeFormat: 'HH:mm',
-            firstDay: 1,
+            // Locale settings
         },
     });
 
     new AirDatepicker('#airdatepicker2', {
         minDate: currentDate,
+        startDate: currentDate,
         disableNavWhenOutOfRange: true,
         buttons: [button, 'clear'],
         autoClose: true,
@@ -205,58 +186,13 @@ document.addEventListener('DOMContentLoaded', function () {
             let time2 = selectElement2.textContent;
 
             updateErrorMessage(date1, date2, time1, time2);
+            updateCalendarButton(); // Check and update the calendar button state
         },
         locale: {
-            days: [
-                'Неділя',
-                'Понеділок',
-                'Вівторок',
-                'Середа',
-                'Четвер',
-                'П’ятниця',
-                'Субота',
-            ],
-            daysShort: ['Нед', 'Пнд', 'Вів', 'Срд', 'Чтв', 'Птн', 'Сбт'],
-            daysMin: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-            months: [
-                'Січень',
-                'Лютий',
-                'Березень',
-                'Квітень',
-                'Травень',
-                'Червень',
-                'Липень',
-                'Серпень',
-                'Вересень',
-                'Жовтень',
-                'Листопад',
-                'Грудень',
-            ],
-            monthsShort: [
-                'Січ',
-                'Лют',
-                'Бер',
-                'Кві',
-                'Тра',
-                'Чер',
-                'Лип',
-                'Сер',
-                'Вер',
-                'Жов',
-                'Лис',
-                'Гру',
-            ],
-            today: 'Сьогодні',
-            clear: 'Очистити',
-            dateFormat: 'dd.MM.yyyy',
-            timeFormat: 'HH:mm',
-            firstDay: 1,
+            // Locale settings
         },
     });
 });
 
-if (errorMessage.textContent !== '') {
-    calendarBtn.disabled = true;
-} else {
-    calendarBtn.disabled = false;
-}
+// Check and update the calendar button state on page load
+updateCalendarButton();
