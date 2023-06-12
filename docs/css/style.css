@@ -8,6 +8,7 @@ body {
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
+  margin: auto;
 }
 
 .wrapper {
@@ -35,12 +36,19 @@ body {
 
 .container {
   max-width: 1218px;
-  margin: 0 auto;
   padding: 30px 0;
+  margin: 0 auto;
 }
 
 button:disabled {
   background-color: grey;
+}
+
+.error-message {
+  color: red;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
 }
 
 html {
@@ -514,14 +522,15 @@ a {
 }
 
 .header__link {
-  color: black;
+  color: #000000;
 }
 
 .header__phone {
-  color: black;
+  color: #000000;
 }
 
 .top__title {
+  margin-bottom: 20px;
   font-weight: 600;
   font-size: 48px;
   line-height: 65px;
@@ -540,7 +549,14 @@ a {
   display: flex;
 }
 
+.calendar {
+  max-width: 386px;
+}
+
 .calendar__title {
+  text-align: center;
+  margin-top: 90px;
+  margin-bottom: 30px;
   font-weight: 400;
   font-size: 20px;
   line-height: 27px;
@@ -552,10 +568,12 @@ a {
   display: flex;
 }
 
-.calendar__input {
-  background: rgba(15, 169, 88, 0.1);
-  border-radius: 10px;
-  color: #0fa958;
+.calendar__hint {
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #515060;
 }
 
 .calendar__inputs {
@@ -563,6 +581,8 @@ a {
   display: -ms-flexbox;
   display: flex;
   gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 10px;
   position: relative;
   cursor: pointer;
 }
@@ -607,6 +627,7 @@ a {
 .calendar__btn {
   width: 386px;
   height: 57px;
+  margin-top: 20px;
   background: #0fa958;
   border: none;
   border-radius: 10px;
@@ -621,6 +642,34 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.car {
+  margin-left: 52px;
+  margin-top: -22px;
+}
+
+.car__img {
+  width: 775px;
+}
+
+.car__benefits--list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 84px;
+  margin-left: 106px;
+  margin-top: 31px;
+}
+
+.car__benefits--item {
+  position: relative;
+}
+
+.car__benefits--item::before {
+  content: url("../img/header/sun.svg");
+  position: absolute;
+  left: -34px;
 }
 
 .air-datepicker {

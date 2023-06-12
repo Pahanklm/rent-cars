@@ -14,7 +14,7 @@ const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
 const year = currentDate.getFullYear();
 const errorMessage = document.createElement('span');
 errorMessage.classList.add('error-message');
-form.insertAdjacentElement('afterend', errorMessage);
+form.insertAdjacentElement('beforeend', errorMessage);
 
 let button = {
     content: 'Сьогодні',
@@ -77,12 +77,13 @@ function addTimeOptions() {
 
 function updateErrorMessage(date1, date2, time1, time2) {
     if (date1 > date2 && date1 !== '' && date2 !== '') {
-        errorMessage.textContent = 'lfksdjkfd';
+        errorMessage.textContent =
+            'Дата подачі не може бути пізніше аніж дата повернення';
         airdatepicker2.value = '';
     } else if (date1 === date2 && date1 !== '' && date2 !== '') {
         if (compareTime(time1, time2) < 1) {
             errorMessage.textContent =
-                'Время конца аренды не может быть раньше или в то же время, что и начало';
+                'Час повернення не може бути раніше або в той самий час, що й початок';
         } else {
             errorMessage.textContent = '';
         }

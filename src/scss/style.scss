@@ -32,11 +32,11 @@
     }
 
     &__link {
-        color: black;
+        color: #000000;
     }
 
     &__phone {
-        color: black;
+        color: #000000;
     }
 }
 
@@ -45,6 +45,8 @@
     }
 
     &__title {
+        margin-bottom: 20px;
+
         font-weight: 600;
         font-size: 48px;
         line-height: 65px;
@@ -61,12 +63,15 @@
     &__box {
         display: flex;
     }
-
-    &__car {
-    }
 }
 .calendar {
+    max-width: 386px;
     &__title {
+        text-align: center;
+
+        margin-top: 90px;
+        margin-bottom: 30px;
+
         font-weight: 400;
         font-size: 20px;
         line-height: 27px;
@@ -80,16 +85,21 @@
     }
 
     &__hint {
-    }
-    &__input {
-        background: rgba(15, 169, 88, 0.1);
-        border-radius: 10px;
+        text-align: center;
 
-        color: #0fa958;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+
+        color: #515060;
     }
     &__inputs {
         display: flex;
+
         gap: 10px;
+
+        margin-bottom: 20px;
+        margin-top: 10px;
 
         position: relative;
 
@@ -132,12 +142,11 @@
             left: 219px;
         }
     }
-    &__input--date2 {
-    }
-
     &__btn {
         width: 386px;
         height: 57px;
+
+        margin-top: 20px;
 
         background: #0fa958;
         border: none;
@@ -151,14 +160,34 @@
         flex-direction: column;
     }
 }
-.benefits {
-    &__list {
+.car {
+    margin-left: 52px;
+    margin-top: -22px;
+    &__img {
+        width: 775px;
     }
 
-    &__item {
+    &__benefits {
     }
 
-    &__text {
+    &__benefits--list {
+        display: flex;
+
+        gap: 84px;
+        margin-left: 106px;
+        margin-top: 31px;
+    }
+
+    &__benefits--item {
+        position: relative;
+        &::before {
+            content: url('../img/header/sun.svg');
+            position: absolute;
+            left: -34px;
+        }
+    }
+
+    &__benefits--text {
     }
 }
 
@@ -237,6 +266,8 @@
     background: rgba(15, 169, 88, 0.3);
     color: #fcfcfc;
 }
+
+// choice
 
 .choices__inner {
     width: 172px;
