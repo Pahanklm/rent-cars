@@ -2,6 +2,7 @@ import * as flsFunctions from './modules/functions.js';
 flsFunctions.isWebp();
 import AirDatepicker from 'air-datepicker';
 import Choices from 'choices.js';
+import axios, { isCancel, AxiosError } from 'axios';
 
 const form = document.querySelector('.calendar__form');
 const selectElement1 = document.querySelector('.calendar__select1');
@@ -289,4 +290,33 @@ document.addEventListener('DOMContentLoaded', function () {
     createChoices();
 
     updateCalendarButton();
+    const token = '5770583680:AAEkwsJeKLgu8LpdjRBlyb-K2CaUSnS69yM';
+    const chat_id = '-1001924586292';
+    const url_api = `https://api.telegram.org/bot${token}/sendMessage`;
+    const tg = document.getElementById('tg');
+
+    tg.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let message = '<b> Заявка с сайта </b>\n';
+        message += `Хочу тачку\nс ${this.airdatepicker1.value} ${this.fromTime.textContent}\n`;
+        message += `по ${this.airdatepicker2.value} ${this.toTime.textContent}`;
+
+        axios
+            .post(url_api, {
+                chat_id: chat_id,
+                parse_mode: 'html',
+                text: message,
+            })
+            .then((response) => {
+                const btn = document.querySelector('.calendar__btn');
+                airdatepicker1.value = '';
+                airdatepicker2.value = '';
+                updateCalendarButton();
+                console.log('Message sent successfully:', response.data);
+            })
+            .catch((error) => {
+                console.error('Error sending message:', error);
+            });
+    });
+    console.log(airdatepicker1.value);
 });

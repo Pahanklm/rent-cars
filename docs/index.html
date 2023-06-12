@@ -58,7 +58,7 @@
                                 найкращий варіант автомобіля
                             </h3>
                             <div class="calendar__box">
-                                <form class="calendar__form" action="">
+                                <form id="tg" class="calendar__form" action="">
                                     <div class="calendar__hint">
                                         Дата та час подачі
                                     </div>
@@ -68,9 +68,11 @@
                                             type="text"
                                             id="airdatepicker1"
                                             autocomplete="off"
+                                            name="fromDate"
                                         />
                                         <div class="calendar__watch">
                                             <select
+                                                name="fromTime"
                                                 class="calendar__select1 calendar__select--time"
                                             ></select>
                                         </div>
@@ -84,14 +86,16 @@
                                             type="text"
                                             id="airdatepicker2"
                                             autocomplete="off"
+                                            name="toDate"
                                         />
                                         <div class="calendar__watch">
                                             <select
+                                                name="toTime"
                                                 class="calendar__select2 calendar__select--time"
                                             ></select>
                                         </div>
                                     </div>
-                                    <button class="calendar__btn">
+                                    <button type="submit" class="calendar__btn">
                                         Надіслати
                                     </button>
                                 </form>
