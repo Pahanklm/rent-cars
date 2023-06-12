@@ -15,6 +15,7 @@ const year = currentDate.getFullYear();
 const errorMessage = document.createElement('span');
 errorMessage.classList.add('error-message');
 form.insertAdjacentElement('beforeend', errorMessage);
+const today = `${day}.${month}.${year}`;
 
 let button = {
     content: 'Сьогодні',
@@ -40,11 +41,10 @@ function compareTime(time1, time2) {
     return 0;
 }
 
-function addTimeOptions() {
+function addTimeOptions(isSelectElement2 = false) {
     let date1 = airdatepicker1.value;
     const currentTime = new Date();
     let startTime;
-    const today = `${day}.${month}.${year}`;
 
     if (date1 === today) {
         startTime = new Date(
@@ -60,6 +60,7 @@ function addTimeOptions() {
     endTime.setHours(23, 59, 0);
 
     const timeOptions = [];
+    let startIndex = isSelectElement2 ? 0 : 1; // Начальный индекс
 
     while (startTime <= endTime) {
         const optionText = startTime.toLocaleTimeString([], {
@@ -68,10 +69,14 @@ function addTimeOptions() {
         });
         const optionValue = startTime.toISOString();
 
-        timeOptions.push({ label: optionText, value: optionValue });
+        if (startIndex >= 1) {
+            timeOptions.push({ label: optionText, value: optionValue });
+        }
 
         startTime.setTime(startTime.getTime() + 30 * 60 * 1000);
+        startIndex++;
     }
+
     return timeOptions;
 }
 
@@ -119,6 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let airdatepicker1 = document.querySelector('#airdatepicker1');
     let airdatepicker2 = document.querySelector('#airdatepicker2');
 
+    airdatepicker1.value = today;
+    airdatepicker2.value = today;
+
     const datePicker1 = new AirDatepicker(airdatepicker1, {
         minDate: currentDate,
         container: 'calendar',
@@ -141,7 +149,50 @@ document.addEventListener('DOMContentLoaded', function () {
             createChoices();
         },
         locale: {
-            // Locale settings
+            days: [
+                'Неділя',
+                'Понеділок',
+                'Вівторок',
+                'Середа',
+                'Четвер',
+                'П’ятниця',
+                'Субота',
+            ],
+            daysShort: ['Нед', 'Пнд', 'Вів', 'Срд', 'Чтв', 'Птн', 'Сбт'],
+            daysMin: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            months: [
+                'Січень',
+                'Лютий',
+                'Березень',
+                'Квітень',
+                'Травень',
+                'Червень',
+                'Липень',
+                'Серпень',
+                'Вересень',
+                'Жовтень',
+                'Листопад',
+                'Грудень',
+            ],
+            monthsShort: [
+                'Січ',
+                'Лют',
+                'Бер',
+                'Кві',
+                'Тра',
+                'Чер',
+                'Лип',
+                'Сер',
+                'Вер',
+                'Жов',
+                'Лис',
+                'Гру',
+            ],
+            today: 'Сьогодні',
+            clear: 'Очистити',
+            dateFormat: 'dd.MM.yyyy',
+            timeFormat: 'HH:mm',
+            firstDay: 1,
         },
     });
 
@@ -160,7 +211,50 @@ document.addEventListener('DOMContentLoaded', function () {
             updateCalendarButton();
         },
         locale: {
-            // Locale settings
+            days: [
+                'Неділя',
+                'Понеділок',
+                'Вівторок',
+                'Середа',
+                'Четвер',
+                'П’ятниця',
+                'Субота',
+            ],
+            daysShort: ['Нед', 'Пнд', 'Вів', 'Срд', 'Чтв', 'Птн', 'Сбт'],
+            daysMin: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            months: [
+                'Січень',
+                'Лютий',
+                'Березень',
+                'Квітень',
+                'Травень',
+                'Червень',
+                'Липень',
+                'Серпень',
+                'Вересень',
+                'Жовтень',
+                'Листопад',
+                'Грудень',
+            ],
+            monthsShort: [
+                'Січ',
+                'Лют',
+                'Бер',
+                'Кві',
+                'Тра',
+                'Чер',
+                'Лип',
+                'Сер',
+                'Вер',
+                'Жов',
+                'Лис',
+                'Гру',
+            ],
+            today: 'Сьогодні',
+            clear: 'Очистити',
+            dateFormat: 'dd.MM.yyyy',
+            timeFormat: 'HH:mm',
+            firstDay: 1,
         },
     });
 
@@ -180,17 +274,19 @@ document.addEventListener('DOMContentLoaded', function () {
             itemSelectText: '',
             choices: addTimeOptions(),
             allowHTML: true,
+            position: 'bottom',
         });
-
         selectElement2.choices = new Choices(selectElement2, {
             searchEnabled: false,
             shouldSort: false,
             itemSelectText: '',
-            choices: addTimeOptions(),
+            choices: addTimeOptions(true),
             allowHTML: true,
+            position: 'bottom',
         });
     }
 
     createChoices();
+
     updateCalendarButton();
 });
