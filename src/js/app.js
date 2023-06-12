@@ -13,6 +13,9 @@ const currentDate = new Date();
 const day = currentDate.getDate();
 const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
 const year = currentDate.getFullYear();
+const successMessage = document.createElement('span');
+successMessage.classList.add('success-message');
+form.insertAdjacentElement('beforeend', successMessage);
 const errorMessage = document.createElement('span');
 errorMessage.classList.add('error-message');
 form.insertAdjacentElement('beforeend', errorMessage);
@@ -312,11 +315,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 airdatepicker1.value = '';
                 airdatepicker2.value = '';
                 updateCalendarButton();
-                console.log('Message sent successfully:', response.data);
+                errorMessage.textContent = '';
+                successMessage.textContent =
+                    'наш менеджер скоро с вами свяжется';
             })
             .catch((error) => {
-                console.error('Error sending message:', error);
+                successMessage.textContent = '';
+                errorMessage.textContent =
+                    'не удалось отправить данный, попробуйте снова';
             });
     });
-    console.log(airdatepicker1.value);
 });
