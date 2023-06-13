@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
         buttons: [button, 'clear'],
         autoClose: true,
         onSelect({ date }) {
+            successMessage.textContent = '';
             const selectedDate = new Date(date.getTime());
             datePicker2.update({
                 minDate: selectedDate,
@@ -201,11 +202,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const datePicker2 = new AirDatepicker(airdatepicker2, {
+        // inline: true,
         minDate: currentDate,
         disableNavWhenOutOfRange: true,
         buttons: [button, 'clear'],
         autoClose: true,
         onSelect({ date }) {
+            successMessage.textContent = '';
             const date1 = airdatepicker1.value;
             const date2 = airdatepicker2.value;
             const time1 = selectElement1.textContent;
@@ -261,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
             firstDay: 1,
         },
     });
-
+    console.log(datePicker2);
     function destroyChoices() {
         if (selectElement1.choices) {
             selectElement1.choices.destroy();
@@ -293,6 +296,9 @@ document.addEventListener('DOMContentLoaded', function () {
     createChoices();
 
     updateCalendarButton();
+
+    //отправка формы в телегу
+
     const token = '5770583680:AAEkwsJeKLgu8LpdjRBlyb-K2CaUSnS69yM';
     const chat_id = '-1001924586292';
     const url_api = `https://api.telegram.org/bot${token}/sendMessage`;

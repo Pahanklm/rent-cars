@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="ua">
     @@include('html/head.html',{ "title":"главная" })
+    <!-- <div class="background"></div> -->
 
     <body>
-        @@include('html/header.html',{})
-        <main class="main">
-            <div class="container">
+        <div class="container">
+            <div class="wrapper">
+                @@include('html/header.html',{})
                 <section class="top">
                     <div class="top__text">
                         <h1 class="top__title">
@@ -33,6 +34,7 @@
                                             id="airdatepicker1"
                                             autocomplete="off"
                                             name="fromDate"
+                                            readonly
                                         />
                                         <div class="calendar__watch">
                                             <select
@@ -51,6 +53,7 @@
                                             id="airdatepicker2"
                                             autocomplete="off"
                                             name="toDate"
+                                            readonly
                                         />
                                         <div class="calendar__watch">
                                             <select
@@ -99,8 +102,9 @@
                     </div>
                 </section>
             </div>
-        </main>
+        </div>
         @@include('html/footer.html',{})
         <script src="js/app.min.js"></script>
     </body>
+    <!-- <div class="background"></div> -->
 </html>

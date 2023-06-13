@@ -16,9 +16,12 @@
     <title>главная</title>
 </head>
 
+    <!-- <div class="background"></div> -->
 
     <body>
-        <header class="header">
+        <div class="container">
+            <div class="wrapper">
+                <header class="header">
     <div class="container">
         <nav class="header__nav">
             <img class="header__logo" src="img/header/Logo.png" alt="logo">
@@ -40,8 +43,6 @@
         </nav>
     </div>
 </header>
-        <main class="main">
-            <div class="container">
                 <section class="top">
                     <div class="top__text">
                         <h1 class="top__title">
@@ -69,6 +70,7 @@
                                             id="airdatepicker1"
                                             autocomplete="off"
                                             name="fromDate"
+                                            readonly
                                         />
                                         <div class="calendar__watch">
                                             <select
@@ -87,6 +89,7 @@
                                             id="airdatepicker2"
                                             autocomplete="off"
                                             name="toDate"
+                                            readonly
                                         />
                                         <div class="calendar__watch">
                                             <select
@@ -135,8 +138,63 @@
                     </div>
                 </section>
             </div>
-        </main>
-        <footer></footer>
+        </div>
+        <footer class="footer">
+    <div class="container">
+        <div class="footer__container">
+            <div class="footer__logo">
+                <a href="#">
+                    <img src="img/footer/logo.png" alt="logo" />
+                </a>
+            </div>
+            <nav class="footer__nav">
+                <ul class="footer__links">
+                    <li class="footer__item">
+                        <a class="footer__item--link" href="#">Парк авто</a>
+                    </li>
+                    <li class="footer__item">
+                        <a class="footer__item--link" href="#">Про нас</a>
+                    </li>
+                    <li class="footer__item">
+                        <a class="footer__item--link" href="#">Відгуки</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="footer__social">
+                <ul class="footer__contacts">
+                    <li class="footer__contact">
+                        <a href="#" class="footer__contact--link"
+                            >+ 38 (097) 471 25 25</a
+                        >
+                    </li>
+                    <li class="footer__contact">
+                        <a href="#" class="footer__contact--link"
+                            >GreenMotor@gmail.com</a
+                        >
+                    </li>
+                    <li class="footer__contact">
+                        <a href="#" class="footer__contact--link">
+                            <img
+                                src="img/footer/telegram.svg"
+                                alt="telegram"
+                            />
+                        </a>
+                    </li>
+                    <li class="footer__contact">
+                        <a href="#" class="footer__contact--link">
+                            <img
+                                src="img/footer/instagram.svg"
+                                alt="instagram"
+                            />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
         <script src="js/app.min.js"></script>
     </body>
+    <!-- <div class="background"></div> -->
 </html>

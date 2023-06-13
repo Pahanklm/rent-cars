@@ -37,8 +37,14 @@
 
     &__phone {
         color: #000000;
+        &:hover {
+            color: #0fa958;
+            transition: all 0.3s;
+        }
     }
 }
+
+//top
 
 .top {
     &__title {
@@ -119,6 +125,10 @@
         background: rgba(15, 169, 88, 0.1);
         border-radius: 10px;
         color: #0fa958;
+
+        &:focus-visible {
+            outline: none;
+        }
     }
     &__watch {
         &::after {
@@ -162,6 +172,8 @@
     &__benefits--list {
         display: flex;
 
+        color: #515060;
+
         gap: 84px;
         margin-left: 106px;
         margin-top: 31px;
@@ -173,6 +185,58 @@
             content: url('../img/header/sun.svg');
             position: absolute;
             left: -34px;
+        }
+    }
+}
+// footer
+.footer {
+    &__container {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        width: 106px;
+        height: 64px;
+    }
+
+    &__nav {
+    }
+
+    &__links {
+        display: flex;
+        gap: 100px;
+
+        margin-right: 100px;
+        margin-left: 112px;
+    }
+
+    &__item {
+    }
+
+    &__item--link {
+        &:hover {
+            color: black;
+            transition: all 0.5s;
+        }
+    }
+
+    &__social {
+    }
+
+    &__contacts {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+    }
+
+    &__contact {
+    }
+
+    &__contact--link {
+        &:hover {
+            color: black;
+            transition: all 0.5s;
         }
     }
 }
@@ -240,6 +304,7 @@
     background: rgba(15, 169, 88, 0.3);
     color: #0fa958;
 }
+
 .air-datepicker-nav--title {
     font-weight: 400;
     font-size: 16px;
@@ -255,12 +320,26 @@
 
 // choice
 
+.choices.is-focused {
+    outline: inherit;
+    border: inherit;
+    border-radius: inherit;
+}
+.is-open .choices__inner {
+    border-radius: 10px;
+}
+.is-focused .choices__inner,
+.is-open .choices__inner {
+    border: none;
+}
+
 .choices__inner {
     width: 172px;
     height: 60px;
     padding: 0;
     background: rgba(15, 169, 88, 0.1);
     border-radius: 10px;
+    border: none;
     color: #0fa958;
 }
 .choices__list--single {
@@ -276,6 +355,9 @@
     position: relative;
     top: 20px;
     padding-right: 6px;
+}
+.choices__list:last-child {
+    margin-bottom: 30px;
 }
 .choices__list--dropdown,
 .choices__list[aria-expanded] {
