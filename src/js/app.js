@@ -264,7 +264,6 @@ document.addEventListener('DOMContentLoaded', function () {
             firstDay: 1,
         },
     });
-    console.log(datePicker2);
     function destroyChoices() {
         if (selectElement1.choices) {
             selectElement1.choices.destroy();
