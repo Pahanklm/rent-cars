@@ -757,6 +757,17 @@ a {
   transition: all 0.5s;
 }
 
+.footer__contact--img {
+  fill: white;
+}
+
+.footer__contact--img:hover {
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  fill: black;
+}
+
 .air-datepicker {
   background: #fcfcfc;
   -webkit-box-shadow: 20px 20px 30px rgba(15, 169, 88, 0.1), inset 0px 4px 23px rgba(15, 169, 88, 0.1);

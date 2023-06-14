@@ -239,6 +239,13 @@
             transition: all 0.5s;
         }
     }
+    &__contact--img {
+        fill: white;
+        &:hover {
+            transition: all 0.5s;
+            fill: black;
+        }
+    }
 }
 
 // calendar
